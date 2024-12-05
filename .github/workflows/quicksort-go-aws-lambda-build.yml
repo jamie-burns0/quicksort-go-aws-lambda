@@ -5,7 +5,6 @@ name: quicksort-go-aws-lambda-build
 run-name: quicksort-go-aws-lambda-build run by ${{ github.actor }}
 on:
   workflow_dispatch:
-    branches: [ "main" ]
 
 jobs:
   build:
@@ -27,3 +26,7 @@ jobs:
 
     - name: Build
       run: go build -tags lambda.norpc -o bootstrap -v ./...
+
+    - name: Create zip file
+      run: |
+        zip bootstrap.zip bootstrap
